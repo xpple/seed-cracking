@@ -3,6 +3,7 @@ Targets snapshot 26.1-snapshot-1.
 Mod usage:
 - Go to overworld location with untouched bedrock, deepslate-stone transition and ore veins. Set sufficiently high render distance to load 33x33 such chunks
 - Execute `/savecrackdata`
+  
 Program usage:
 - Download and build kissat (https://github.com/arminbiere/kissat)
 - `clang++ blocks.cpp xsinv.cpp -std=c++2c -O3 -march=native -fopenmp -I[path to kissat/src] [path to libkissat.a]`
