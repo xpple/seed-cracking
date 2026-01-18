@@ -15,16 +15,16 @@
 	"icon": "assets/bedrock-seed/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"bedrock.Bedrockseed"
+		"client": [
+          "bedrock.BedrockSeed"
 		]
 	},
 	"mixins": [
 		"bedrock-seed.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.4",
-		"minecraft": "~26.1-",
+		"fabricloader": ">=${loader_version}",
+		"minecraft": ">=${minecraft_version_dependency}",
 		"java": ">=25",
 		"fabric-api": "*"
 	}

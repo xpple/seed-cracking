@@ -38,3 +38,13 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# Crack
+
+src/main/c/z3/
+
+src/main/resources/libz3.*
+
+src/main/resources/crack.dll
+src/main/resources/libcrack.dylib
+src/main/resources/libcrack.so

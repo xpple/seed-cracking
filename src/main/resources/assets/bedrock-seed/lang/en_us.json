@@ -1,0 +1,21 @@
+{
+  "commands.bedrockcrack.startedCollecting": "Started collecting data...",
+  "commands.bedrockcrack.progress": "Scanned %s/%s chunks",
+  "commands.bedrockcrack.stoppedCollecting": "Stopped collecting data, cleared current data",
+  "commands.bedrockcrack.alreadyStarted": "Already started collecting data!",
+  "commands.bedrockcrack.notStarted": "Currently not collecting data!",
+  "commands.bedrockcrack.startedCracking": "Started cracking with %s data points!",
+  "commands.bedrockcrack.finishedCracking": "Finished cracking!",
+  "commands.bedrockcrack.completedBitSearch1": "Completed bit search for -63 <= y <= -60 bedrock and deepslate!",
+  "commands.bedrockcrack.completedBitSearch2": "Completed bit search for 1 <= y <= 7 deepslate and stone!",
+  "commands.bedrockcrack.completedBitSearch3": "Completed bit search for general ore vein blocks!",
+  "commands.bedrockcrack.completedBitSearch4": "Completed bit search for filler ore vein blocks!",
+  "commands.bedrockcrack.completedBitSearch5": "Completed bit search for raw ore vein blocks!",
+  "commands.bedrockcrack.startingZ3Search": "Starting Z3 search...",
+  "commands.bedrockcrack.Z3Failed": "Z3 failed!",
+  "commands.bedrockcrack.Z3Unsat": "UNSAT! Try collecting data from chunks that aren't altered by players!",
+  "commands.bedrockcrack.crackedRandomStateRandom": "Cracked RandomState.random (lo=%s hi=%s), searching for world seed...",
+  "commands.bedrockcrack.foundCandidate": "Found candidate: %s %s at guess=%s",
+  "commands.bedrockcrack.foundWorldSeed": "Found world seed: %s",
+  "commands.bedrockcrack.unknownError": "An unknown error occurred, see your log for more info"
+}

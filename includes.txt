@@ -1,0 +1,10 @@
+--include-constant BEDROCK
+--include-constant RAW
+--include-constant ORE
+--include-constant FILL
+--include-constant STONE
+--include-constant DEEPSLATE
+
+--include-struct block_entry
+
+--include-function crack
