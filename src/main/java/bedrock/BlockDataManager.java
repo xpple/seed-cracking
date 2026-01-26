@@ -54,7 +54,7 @@ public final class BlockDataManager {
         .put(Blocks.DEEPSLATE, BedrockNative.DEEPSLATE())
         .build();
 
-    public static final int TARGET_CHUNKS = (2 * 33 + 1) * (2 * 33 + 1);
+    public static final int TARGET_CHUNKS = (2 * 16 + 1) * (2 * 16 + 1);
 
     private static volatile boolean active = false;
     private static final LongSet scannedChunks = LongSets.synchronize(new LongOpenHashSet());
