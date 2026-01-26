@@ -56,16 +56,16 @@ public final class BlockDataManager {
 
     public static final int TARGET_CHUNKS = (2 * 16 + 1) * (2 * 16 + 1);
 
-    private static volatile boolean active = false;
+    private static volatile boolean collecting = false;
     private static final LongSet scannedChunks = LongSets.synchronize(new LongOpenHashSet());
     private static final ObjectList<BlockData> data = ObjectLists.synchronize(new ObjectArrayList<>());
 
     public static void scanChunk(ChunkPos pos) {
-        if (!active || scannedChunks.contains(pos.pack())) {
+        if (!collecting || scannedChunks.contains(pos.pack())) {
             return;
         }
         crackingExecutor.submit(() -> {
-            if (!active) {
+            if (!collecting) {
                 return;
             }
             ChunkAccess chunk = minecraft.level.getChunk(pos.x(), pos.z(), ChunkStatus.FULL, false);
@@ -115,11 +115,11 @@ public final class BlockDataManager {
     }
 
     public static void startCollecting() {
-        active = true;
+        collecting = true;
     }
 
-    public static boolean isActive() {
-        return active;
+    public static boolean isCollecting() {
+        return collecting;
     }
 
     public static int getScannedChunks() {
@@ -127,7 +127,7 @@ public final class BlockDataManager {
     }
 
     public static void stopCollecting() {
-        active = false;
+        collecting = false;
 
         scannedChunks.clear();
         data.clear();

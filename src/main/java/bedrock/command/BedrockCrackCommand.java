@@ -28,7 +28,7 @@ public class BedrockCrackCommand {
     }
 
     private static int start(FabricClientCommandSource source) throws CommandSyntaxException {
-        if (BlockDataManager.isActive()) {
+        if (BlockDataManager.isCollecting()) {
             throw ALREADY_STARTED_EXCEPTION.create();
         }
 
@@ -43,7 +43,7 @@ public class BedrockCrackCommand {
     }
 
     private static int progress(FabricClientCommandSource source) throws CommandSyntaxException {
-        if (!BlockDataManager.isActive()) {
+        if (!BlockDataManager.isCollecting()) {
             throw NOT_STARTED_EXCEPTION.create();
         }
 
@@ -53,7 +53,7 @@ public class BedrockCrackCommand {
     }
 
     private static int stop(FabricClientCommandSource source) throws CommandSyntaxException {
-        if (!BlockDataManager.isActive()) {
+        if (!BlockDataManager.isCollecting()) {
             throw NOT_STARTED_EXCEPTION.create();
         }
 
