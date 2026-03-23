@@ -148,7 +148,7 @@ public final class BlockDataManager {
     private static void displayMessage(Component component) {
         LocalPlayer player = minecraft.player;
         if (player != null) {
-            minecraft.schedule(() -> player.displayClientMessage(component, false));
+            minecraft.schedule(() -> player.sendSystemMessage(component));
         } else {
             BedrockSeed.LOGGER.info(component.getString());
         }

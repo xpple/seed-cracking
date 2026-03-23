@@ -3,13 +3,12 @@
 	"id": "bedrock-seed",
 	"version": "${version}",
 	"name": "bedrock-seed",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Seed cracker that uses bedrock/deepslate/ore vein data.",
 	"authors": [
-		"Me!"
+		"someone12469"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/someone12469/seed-cracking"
 	},
 	"license": "MIT",
 	"icon": "assets/bedrock-seed/icon.png",
@@ -24,7 +23,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=${loader_version}",
-		"minecraft": ">=${minecraft_version_dependency}",
+		"minecraft": "${minecraft_version_dependency}",
 		"java": ">=25",
 		"fabric-api": "*"
 	}

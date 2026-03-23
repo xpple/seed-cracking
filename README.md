@@ -1,4 +1,4 @@
-Targets snapshot 26.1-snapshot-4. JAR available on GitHub Actions.
+Targets snapshot 26.1. JAR available on GitHub Releases and temporarily on GitHub Actions.
 
 Mod usage:
 - Go to overworld location with untouched bedrock, deepslate-stone transition and ore veins.
