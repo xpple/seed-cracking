@@ -41,7 +41,7 @@ public class BedrockSeed implements ClientModInitializer {
 		System.load(crackPath.toAbsolutePath().toString());
 		// verify library is loaded successfully
         //noinspection ResultOfMethodCallIgnored
-		BedrockNative.crack$address();
+		BedrockNative.bedrockseed$crack$address();
 	}
 
 	@Override

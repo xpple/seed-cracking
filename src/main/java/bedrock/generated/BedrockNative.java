@@ -12,43 +12,13 @@ import java.util.stream.*;
 import static java.lang.foreign.ValueLayout.*;
 import static java.lang.foreign.MemoryLayout.PathElement.*;
 
-public class BedrockNative {
+public class BedrockNative extends BedrockNative$shared {
 
     BedrockNative() {
         // Should not be called directly
     }
 
     static final Arena LIBRARY_ARENA = Arena.ofAuto();
-    static final boolean TRACE_DOWNCALLS = Boolean.getBoolean("jextract.trace.downcalls");
-
-    static void traceDowncall(String name, Object... args) {
-         String traceArgs = Arrays.stream(args)
-                       .map(Object::toString)
-                       .collect(Collectors.joining(", "));
-         System.out.printf("%s(%s)\n", name, traceArgs);
-    }
-
-    static MethodHandle upcallHandle(Class<?> fi, String name, FunctionDescriptor fdesc) {
-        try {
-            return MethodHandles.lookup().findVirtual(fi, name, fdesc.toMethodType());
-        } catch (ReflectiveOperationException ex) {
-            throw new AssertionError(ex);
-        }
-    }
-
-    static MemoryLayout align(MemoryLayout layout, long align) {
-        return switch (layout) {
-            case PaddingLayout p -> p;
-            case ValueLayout v -> v.withByteAlignment(align);
-            case GroupLayout g -> {
-                MemoryLayout[] alignedMembers = g.memberLayouts().stream()
-                        .map(m -> align(m, align)).toArray(MemoryLayout[]::new);
-                yield g instanceof StructLayout ?
-                        MemoryLayout.structLayout(alignedMembers) : MemoryLayout.unionLayout(alignedMembers);
-            }
-            case SequenceLayout s -> MemoryLayout.sequenceLayout(s.elementCount(), align(s.elementLayout(), align));
-        };
-    }
 
 
     static {
@@ -57,17 +27,6 @@ public class BedrockNative {
     static final SymbolLookup SYMBOL_LOOKUP = SymbolLookup.loaderLookup()
             .or(Linker.nativeLinker().defaultLookup());
 
-    public static final ValueLayout.OfBoolean C_BOOL = (ValueLayout.OfBoolean) Linker.nativeLinker().canonicalLayouts().get("bool");
-    public static final ValueLayout.OfByte C_CHAR =(ValueLayout.OfByte)Linker.nativeLinker().canonicalLayouts().get("char");
-    public static final ValueLayout.OfShort C_SHORT = (ValueLayout.OfShort) Linker.nativeLinker().canonicalLayouts().get("short");
-    public static final ValueLayout.OfInt C_INT = (ValueLayout.OfInt) Linker.nativeLinker().canonicalLayouts().get("int");
-    public static final ValueLayout.OfLong C_LONG_LONG = (ValueLayout.OfLong) Linker.nativeLinker().canonicalLayouts().get("long long");
-    public static final ValueLayout.OfFloat C_FLOAT = (ValueLayout.OfFloat) Linker.nativeLinker().canonicalLayouts().get("float");
-    public static final ValueLayout.OfDouble C_DOUBLE = (ValueLayout.OfDouble) Linker.nativeLinker().canonicalLayouts().get("double");
-    public static final AddressLayout C_POINTER = ((AddressLayout) Linker.nativeLinker().canonicalLayouts().get("void*"))
-            .withTargetLayout(MemoryLayout.sequenceLayout(java.lang.Long.MAX_VALUE, C_CHAR));
-    public static final ValueLayout.OfInt C_LONG = ValueLayout.JAVA_INT;
-    public static final ValueLayout.OfDouble C_LONG_DOUBLE = ValueLayout.JAVA_DOUBLE;
     private static final int BEDROCK = (int)0L;
     /**
      * {@snippet lang=c :
@@ -123,14 +82,14 @@ public class BedrockNative {
         return DEEPSLATE;
     }
 
-    private static class crack {
+    private static class bedrockseed$crack {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
             BedrockNative.C_INT,
             BedrockNative.C_POINTER,
             BedrockNative.C_INT
         );
 
-        public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("crack");
+        public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("bedrockseed$crack");
 
         public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
     }
@@ -138,45 +97,47 @@ public class BedrockNative {
     /**
      * Function descriptor for:
      * {@snippet lang=c :
-     * void crack(int size, block_entry *entries, int mode)
+     * void bedrockseed$crack(int size, block_entry *entries, int mode)
      * }
      */
-    public static FunctionDescriptor crack$descriptor() {
-        return crack.DESC;
+    public static FunctionDescriptor bedrockseed$crack$descriptor() {
+        return bedrockseed$crack.DESC;
     }
 
     /**
      * Downcall method handle for:
      * {@snippet lang=c :
-     * void crack(int size, block_entry *entries, int mode)
+     * void bedrockseed$crack(int size, block_entry *entries, int mode)
      * }
      */
-    public static MethodHandle crack$handle() {
-        return crack.HANDLE;
+    public static MethodHandle bedrockseed$crack$handle() {
+        return bedrockseed$crack.HANDLE;
     }
 
     /**
      * Address for:
      * {@snippet lang=c :
-     * void crack(int size, block_entry *entries, int mode)
+     * void bedrockseed$crack(int size, block_entry *entries, int mode)
      * }
      */
-    public static MemorySegment crack$address() {
-        return crack.ADDR;
+    public static MemorySegment bedrockseed$crack$address() {
+        return bedrockseed$crack.ADDR;
     }
 
     /**
      * {@snippet lang=c :
-     * void crack(int size, block_entry *entries, int mode)
+     * void bedrockseed$crack(int size, block_entry *entries, int mode)
      * }
      */
-    public static void crack(int size, MemorySegment entries, int mode) {
-        var mh$ = crack.HANDLE;
+    public static void bedrockseed$crack(int size, MemorySegment entries, int mode) {
+        var mh$ = bedrockseed$crack.HANDLE;
         try {
             if (TRACE_DOWNCALLS) {
-                traceDowncall("crack", size, entries, mode);
+                traceDowncall("bedrockseed$crack", size, entries, mode);
             }
             mh$.invokeExact(size, entries, mode);
+        } catch (Error | RuntimeException ex) {
+           throw ex;
         } catch (Throwable ex$) {
            throw new AssertionError("should not reach here", ex$);
         }

@@ -17,4 +17,12 @@ struct block_entry {
     int typ;
 };
 
-extern "C" JNIEXPORT void crack(int size, block_entry* entries, int mode);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+JNIEXPORT void bedrockseed$crack(int size, block_entry* entries, int mode);
+
+#ifdef __cplusplus
+}
+#endif

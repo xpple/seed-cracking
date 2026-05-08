@@ -135,7 +135,7 @@ std::pair<z3::expr, z3::expr> Step(z3::expr S0, z3::expr S1)
 	return {S0.rotate_left(49) ^ S12 ^ z3::shl(S12, 21), S12.rotate_left(28)};
 }
 
-void crack(int size, block_entry* entries, int mode)
+void bedrockseed$crack(int size, block_entry* entries, int mode)
 {
 	assert(1 <= mode && mode <= 31);
 	std::map<point3, block_type> blocks;

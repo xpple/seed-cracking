@@ -62,21 +62,21 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         working-directory: src/main/c
         run: |
-          g++ -shared -o libcrack.so blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp -fPIC -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux"
+          g++ -shared -o libcrack.so blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp -fPIC -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -fvisibility=hidden -Wl,--exclude-libs,ALL
           cp libcrack.so ../resources
 
       - name: Build cracking library (macos-latest)
         if: matrix.os == 'macos-latest'
         working-directory: src/main/c
         run: |
-          g++-15 -dynamiclib -o libcrack.dylib blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp -fPIC -arch arm64 -arch x86_64 -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/darwin"
+          g++-15 -dynamiclib -o libcrack.dylib blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp -fPIC -arch arm64 -arch x86_64 -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/darwin" -fvisibility=hidden -Wl,-hidden-lgcc -Wl,-hidden-lstdc++
           cp libcrack.dylib ../resources
 
       - name: Build cracking library (windows-latest)
         if: matrix.os == 'windows-latest'
         working-directory: src/main/c
         run: |
-          g++ -shared -o crack.dll blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp "-Wl,-Bstatic" -lgomp -lwinpthread "-Wl,-Bdynamic" -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$env:JAVA_HOME/include" -I"$env:JAVA_HOME/include/win32"
+          g++ -shared -o crack.dll blocks.cpp xsinv.cpp java_helper.cpp -std=c++23 -O3 -fopenmp "-Wl,-Bstatic" -lgomp -lwinpthread "-Wl,-Bdynamic" -static-libgcc -static-libstdc++ -Iz3/include -Lz3/bin -lz3 -I"$env:JAVA_HOME/include" -I"$env:JAVA_HOME/include/win32" -fvisibility=hidden "-Wl,--exclude-libs,ALL"
           cp crack.dll ../resources
 
       - name: Capture shared libraries (ubuntu-latest)

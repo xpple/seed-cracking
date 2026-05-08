@@ -106,7 +106,7 @@ public final class BlockDataManager {
 
             stopCollecting();
 
-            BedrockNative.crack(size, entries, 31);
+            BedrockNative.bedrockseed$crack(size, entries, 31);
             displayMessage(Component.translatable("commands.bedrockcrack.finishedCracking"));
         } catch (Throwable t) {
             displayMessage(Component.translatable("commands.bedrockcrack.unknownError"));

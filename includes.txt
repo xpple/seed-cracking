@@ -7,4 +7,4 @@
 
 --include-struct block_entry
 
---include-function crack
+--include-function bedrockseed$crack
